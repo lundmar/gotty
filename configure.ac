@@ -8,6 +8,18 @@ AC_LANG([C])
 AC_PROG_INSTALL
 AC_SYS_LARGEFILE
 
+# Handle configuration file
+AC_ARG_ENABLE([conffile],
+    AS_HELP_STRING([--disable-conffile], [disable configuration file support]))
+
+AS_IF([test "x$enable_conffile" != "xno"], [
+    AC_CHECK_LIB(inih, ini_parse, [], [
+	    AC_MSG_ERROR([inih is required for configuration file support, use --disable-conffile to disable.])
+    ])
+    INIH_LIBS=-linih
+    AC_SUBST([INIH_LIBS])
+])
+
 # Handle bash completion
 AC_ARG_WITH([bash-completion-dir],
     AS_HELP_STRING([--with-bash-completion-dir[=PATH]],

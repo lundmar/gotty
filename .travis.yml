@@ -1,3 +1,6 @@
 language: c
-before_script: ./autogen.sh
+dist: focal
+before_script:
+  - sudo apt-get install -y libinih1 libinih-dev
+  - ./autogen.sh
 script: ./configure && make
