@@ -47,6 +47,7 @@ struct option_t
 
 extern struct option_t option;
 
+long string_to_long(char *string);
 void parse_options(int argc, char *argv[]);
 
 #endif
