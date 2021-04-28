@@ -1,7 +1,7 @@
 /*
  * tio - a simple TTY terminal I/O application
  *
- * Copyright (c) 2014-2017  Martin Lund
+ * Copyright (c) 2020       Liam Beguin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,35 +19,24 @@
  * 02110-1301, USA.
  */
 
-#ifndef OPTIONS_H
-#define OPTIONS_H
+#ifndef CONFFILE_H
+#define CONFFILE_H
 
-#include <stdbool.h>
-#include <limits.h>
-#include <termios.h>
-#include <sys/param.h>
+struct conf_data {
+	const char *user;
 
-/* Options */
-struct option_t
-{
-    const char *tty_device;
-    unsigned int baudrate;
-    int databits;
-    char *flow;
-    int stopbits;
-    char *parity;
-    int output_delay;
-    bool no_autoconnect;
-    bool log;
-    bool local_echo;
-    bool timestamp;
-    const char *log_filename;
-    const char *map;
+	char *path;
+	char *section_name;
+	char *match;
+
+	char *tty;
+	char *flow;
+	char *parity;
+	char *log_filename;
+	char *map;
 };
 
-extern struct option_t option;
+void conf_parse_file(const int argc, char *argv[]);
+void conf_exit(void);
 
-long string_to_long(char *string);
-void parse_options(int argc, char *argv[]);
-
-#endif
+#endif /* CONFFILE_H */

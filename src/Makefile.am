@@ -1,14 +1,17 @@
 AM_CPPFLAGS = -I$(srcdir)/include
 AM_CFLAGS = -Wall
 bin_PROGRAMS = tio
+tio_LDFLAGS = @INIH_LIBS@
 tio_SOURCES = tty.c \
               options.c \
+              conffile.c \
               time.c \
               main.c \
               log.c \
               error.c \
               include/tio/tty.h \
               include/tio/options.h \
+              include/tio/conffile.h \
               include/tio/time.h \
               include/tio/print.h \
               include/tio/log.h \

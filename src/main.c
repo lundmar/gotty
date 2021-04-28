@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "tio/options.h"
+#include "tio/conffile.h"
 #include "tio/tty.h"
 #include "tio/log.h"
 #include "tio/error.h"
@@ -35,6 +36,10 @@ int main(int argc, char *argv[])
 
     /* Install error exit handler */
     atexit(&error_exit);
+
+    /* Parse configuration file */
+    conf_parse_file(argc, argv);
+    atexit(&conf_exit);
 
     /* Parse options */
     parse_options(argc, argv);
