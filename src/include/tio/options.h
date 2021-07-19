@@ -41,6 +41,7 @@ struct option_t
     bool log;
     bool local_echo;
     bool timestamp;
+    bool hex_mode;
     const char *log_filename;
     const char *map;
 };
